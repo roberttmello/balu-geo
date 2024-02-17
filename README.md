@@ -1,6 +1,6 @@
 # Balu Geo 🐶
 
-Quiz sobre países do mundo e suas capitais desenvolvido com Vue 3. Acesso o [**DEMO**](#)  e divirta-se! 🤩
+**Quiz** sobre países do mundo e suas capitais desenvolvido com Vue 3. Acesse o [**DEMO**](#) e divirta-se! 🤩
 
 ## Configuração do projeto
 

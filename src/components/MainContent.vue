@@ -13,8 +13,8 @@ const currentCountryCapitalsOptions = ref([
 </script>
 
 <template>
-  <h2>Qual a capital do(a) {{ currentCountryName }} ?</h2>
   <main>
+    <h2>Qual a capital do(a) {{ currentCountryName }} ?</h2>
     <ul class="listCountry">
       <li v-for="capital in currentCountryCapitalsOptions" :key="capital.id" class="listCountryItem">
         {{ capital.name }}
@@ -26,17 +26,17 @@ const currentCountryCapitalsOptions = ref([
 <style scoped>
 h2 {
   text-align: center;
+  margin-bottom: 16px;
 }
 
 main {
   display: grid;
   place-content: center;
-  margin-top: -32px;
 }
 
 .listCountryItem {
-  width: 256px;
-  height: 32px;
+  width: 340px;
+  height: 48px;
   border: 2px solid var(--primary-color);
   margin-bottom: 16px;
   padding: 4px;

@@ -3,7 +3,7 @@ import NavBar from './components/NavBar.vue'
 import MainContent from './components/MainContent.vue'
 import FooterContent from './components/FooterContent.vue'
 
-// import allCountries from './data/countries.js'
+
 </script>
 
 <template>

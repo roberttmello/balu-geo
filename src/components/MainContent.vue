@@ -1,22 +1,65 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
-const currentCountryName = ref('Brasil')
+const apiURL = 'https://restcountries.com/v3.1/all?fields=name,capital'
+let randomIndexCountry = Math.floor(Math.random() * 193)
 
-const currentCountryCapitalsOptions = ref([
-  { id: 0, name: 'Bogotá' },
-  { id: 1, name: 'Brasília' },
-  { id: 2, name: 'Cairo' },
-  { id: 3, name: 'Berlim' },
-  { id: 4, name: 'Camberra' }
-])
+const countriesData = ref(null)
+const currentCountryName = ref('')
+const currentCountryCapitalsOptions = ref([])
+const score = ref(0)
+const answer = ref('')
+
+function calcScore(capitalSelected) {
+  if (capitalSelected === answer.value) {
+    score.value++ 
+  }
+  generateQuiz()
+}
+
+function generateQuiz() {
+  currentCountryCapitalsOptions.value = []
+  for (let index = 0; index < 5; index++) {
+    randomIndexCountry = Math.floor(Math.random() * 250)
+    currentCountryCapitalsOptions.value.push({
+      id: index,
+      name: countriesData.value[randomIndexCountry].capital[0],
+      countryIndex: randomIndexCountry
+    })
+  }
+  let randomPosQuestion = Math.floor(Math.random() * 5)
+  let indexCountryQuestion = currentCountryCapitalsOptions.value[randomPosQuestion].countryIndex
+  currentCountryName.value = countriesData.value[indexCountryQuestion].name.common
+  answer.value = countriesData.value[indexCountryQuestion].capital[0]
+}
+
+onMounted(() => {
+  async function fetchDataCountries() {
+    const response = await fetch(apiURL)
+    countriesData.value = await response.json()
+    localStorage.setItem('countriesDataLocal', countriesData.value)
+    generateQuiz()
+  }
+
+  if (countriesData.value === null) {
+    fetchDataCountries()
+  }
+})
 </script>
 
 <template>
+  <h2>
+    What's the capital of <span class="countryName">{{ currentCountryName }}</span> ?
+  </h2>
+  <span class="score">Score: {{ score }}</span>
   <main>
-    <h2>Qual a capital do(a) {{ currentCountryName }} ?</h2>
     <ul class="listCountry">
-      <li v-for="capital in currentCountryCapitalsOptions" :key="capital.id" class="listCountryItem">
+      <li
+        v-for="capital in currentCountryCapitalsOptions"
+        :key="capital.id"
+        class="listCountryItem"
+        @click="calcScore(capital.name)"
+      >
         {{ capital.name }}
       </li>
     </ul>
@@ -27,6 +70,18 @@ const currentCountryCapitalsOptions = ref([
 h2 {
   text-align: center;
   margin-bottom: 16px;
+}
+
+.score {
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.countryName {
+  color: var(--primary-color);
 }
 
 main {

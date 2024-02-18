@@ -6,12 +6,13 @@
 
 <style scoped>
 footer {
-  height: 32px;
+  height: 64px;
 }
 
 p {
   text-align: center;
   font-weight: bold;
+  margin: 32px 0;
 }
 span {
   color: var(--primary-color);

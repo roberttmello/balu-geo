@@ -1,8 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const buttonThemeLabel = ref('Dark');
-
+const buttonThemeLabel = ref('Dark')
 </script>
 
 <template>
@@ -11,13 +10,14 @@ const buttonThemeLabel = ref('Dark');
       <a href="/"> <img src="/logo.svg" alt="Logo Image" class="logo" /></a>
     </div>
     <div>
-      <button>{{buttonThemeLabel}}</button>
+      <button>{{ buttonThemeLabel }}</button>
     </div>
   </nav>
 </template>
 
 <style scoped>
 nav {
+  height: 128px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -38,5 +38,4 @@ button:hover {
   background-color: var(--primary-color);
   transition: 0.3s;
 }
-
 </style>

@@ -2,6 +2,9 @@
 import NavBar from './components/NavBar.vue'
 import MainContent from './components/MainContent.vue'
 import FooterContent from './components/FooterContent.vue'
+
+import allCountries from './data/countries.js'
+
 </script>
 
 <template>
@@ -13,13 +16,13 @@ import FooterContent from './components/FooterContent.vue'
 </template>
 
 <style scoped>
- .appContainer {
+.appContainer {
   max-width: 1200px;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   justify-content: space-between;
-  margin: 40px auto;
+  margin: 0px auto;
+  padding: 0px 32px;
   flex-direction: column;
- }
-
+}
 </style>

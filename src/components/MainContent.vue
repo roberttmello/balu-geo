@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from 'vue'
 
-const countryName = ref('Brasil')
+const currentCountryName = ref('Brasil')
 
-const countryCapitals = ref([
+const currentCountryCapitalsOptions = ref([
   { id: 0, name: 'Bogotá' },
   { id: 1, name: 'Brasília' },
   { id: 2, name: 'Cairo' },
@@ -13,20 +13,41 @@ const countryCapitals = ref([
 </script>
 
 <template>
+  <h2>Qual a capital do(a) {{ currentCountryName }} ?</h2>
   <main>
-    <h1>Qual a capital do(a) {{ countryName }} ?</h1>
-    <fieldset>
-      <legend>Escolha uma opção:</legend>
-      <div v-for="capital in countryCapitals" :key="capital.id">
-        <input type="radio" :id="capital.id" name="capitalOption"/>
-        <label :for="capital.id">{{capital.name}}</label>
-      </div>
-    </fieldset>
+    <ul class="listCountry">
+      <li v-for="capital in currentCountryCapitalsOptions" :key="capital.id" class="listCountryItem">
+        {{ capital.name }}
+      </li>
+    </ul>
   </main>
 </template>
 
 <style scoped>
-fieldset {
-  border: none;
+h2 {
+  text-align: center;
+}
+
+main {
+  display: grid;
+  place-content: center;
+  margin-top: -32px;
+}
+
+.listCountryItem {
+  width: 256px;
+  height: 32px;
+  border: 2px solid var(--primary-color);
+  margin-bottom: 16px;
+  padding: 4px;
+  display: grid;
+  place-content: center;
+  font-weight: bold;
+}
+
+.listCountryItem:hover {
+  background-color: var(--primary-color);
+  transition: 0.3s;
+  cursor: pointer;
 }
 </style>

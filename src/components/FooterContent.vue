@@ -5,6 +5,10 @@
 </template>
 
 <style scoped>
+footer {
+  height: 32px;
+}
+
 p {
   text-align: center;
   font-weight: bold;

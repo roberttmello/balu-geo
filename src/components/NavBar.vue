@@ -30,4 +30,18 @@ button:hover {
   background-color: var(--primary-color);
   transition: 0.3s;
 }
+
+@media (max-width: 1024px) {
+  nav {
+    justify-content: center;
+  }
+
+  .logo {
+    max-width: 172px;
+  }
+}
+
+
+
+
 </style>

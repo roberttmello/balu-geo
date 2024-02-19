@@ -60,7 +60,7 @@ onMounted(() => {
   <h2>
     What's the capital of <span class="countryName">{{ currentCountryName }}</span> ?
   </h2>
-  <span class="score">Score: {{ score }}</span>
+  <button class="score">Score: {{ score }}</button>
   <main>
     <ConfettiExplosion v-if="celebrateTime" :particleCount="200" :force="0.3" :duration="1000" />
     <ul class="listCountry">
@@ -83,13 +83,17 @@ h2 {
 }
 
 .score {
-  font-size: 1.5rem;
+  font-size: 1rem;
+  text-transform: uppercase;
   font-weight: bold;
+  max-width: 200px;
+  border: 2px solid var(--primary-color);
+  padding: 8px 0;
   display: flex;
-  justify-content: right;
+  justify-content: center;
   align-items: center;
+  background-color: var(--primary-color);
 }
-
 .countryName {
   color: var(--primary-color);
 }
@@ -115,4 +119,23 @@ main {
   transition: 0.3s;
   cursor: pointer;
 }
+
+@media (max-width: 1024px) {
+
+  h2 {
+    margin-top: 48px;
+  }
+  .score {
+    font-size: 1rem;
+    display: block;
+    margin: 48px auto;
+    padding: 0 8px;
+  }
+  .listCountryItem {
+    max-width: 200px;
+    max-height: 40px;
+  }
+
+}
+
 </style>

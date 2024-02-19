@@ -3,8 +3,7 @@
 
 /* General */
 :root {
-  --primary-color: #ffbb00;
-  --primary-color-lighter:#ffbb001e; 
+  --primary-color: #ffbb00; 
   --light-text: #fafafa;
   --dark-text: #222222;
   --dark-bg: #222222;

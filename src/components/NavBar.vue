@@ -1,16 +1,7 @@
-<script setup>
-import { ref } from 'vue'
-
-const buttonThemeLabel = ref('Dark')
-</script>
-
 <template>
   <nav>
     <div>
       <a href="/"> <img src="/logo.svg" alt="Logo Image" class="logo" /></a>
-    </div>
-    <div>
-      <button>{{ buttonThemeLabel }}</button>
     </div>
   </nav>
 </template>

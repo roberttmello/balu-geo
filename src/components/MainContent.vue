@@ -1,5 +1,6 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
+import ConfettiExplosion from 'vue-confetti-explosion'
 
 const apiURL = 'https://restcountries.com/v3.1/all?fields=name,capital'
 let randomIndexCountry = Math.floor(Math.random() * 193)
@@ -9,10 +10,18 @@ const currentCountryName = ref('')
 const currentCountryCapitalsOptions = ref([])
 const score = ref(0)
 const answer = ref('')
+const celebrateTime = ref(false)
+
+async function celebrate() {
+  celebrateTime.value = false
+  await nextTick()
+  celebrateTime.value = true
+}
 
 function calcScore(capitalSelected) {
   if (capitalSelected === answer.value) {
-    score.value++ 
+    score.value++
+    celebrate()
   }
   generateQuiz()
 }
@@ -53,6 +62,7 @@ onMounted(() => {
   </h2>
   <span class="score">Score: {{ score }}</span>
   <main>
+    <ConfettiExplosion v-if="celebrateTime" :particleCount="200" :force="0.3" :duration="1000" />
     <ul class="listCountry">
       <li
         v-for="capital in currentCountryCapitalsOptions"

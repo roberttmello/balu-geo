@@ -3,7 +3,6 @@ import { ref, onMounted, nextTick } from 'vue'
 import ConfettiExplosion from 'vue-confetti-explosion'
 
 const apiURL = 'https://restcountries.com/v3.1/all?fields=name,capital'
-let randomIndexCountry = Math.floor(Math.random() * 193)
 
 const countriesData = ref(null)
 const currentCountryName = ref('')
@@ -28,6 +27,7 @@ function calcScore(capitalSelected) {
 
 function generateQuiz() {
   currentCountryCapitalsOptions.value = []
+  let randomIndexCountry
   for (let index = 0; index < 5; index++) {
     randomIndexCountry = Math.floor(Math.random() * 250)
     currentCountryCapitalsOptions.value.push({
@@ -64,12 +64,8 @@ onMounted(() => {
   <main>
     <ConfettiExplosion v-if="celebrateTime" :particleCount="200" :force="0.3" :duration="1000" />
     <ul class="listCountry">
-      <li
-        v-for="capital in currentCountryCapitalsOptions"
-        :key="capital.id"
-        class="listCountryItem"
-        @click="calcScore(capital.name)"
-      >
+      <li v-for="capital in currentCountryCapitalsOptions" :key="capital.id" class="listCountryItem"
+        @click="calcScore(capital.name)">
         {{ capital.name }}
       </li>
     </ul>
@@ -94,6 +90,7 @@ h2 {
   align-items: center;
   background-color: var(--primary-color);
 }
+
 .countryName {
   color: var(--primary-color);
 }
@@ -121,21 +118,20 @@ main {
 }
 
 @media (max-width: 1024px) {
-
   h2 {
     margin-top: 48px;
   }
+
   .score {
     font-size: 1rem;
     display: block;
     margin: 48px auto;
     padding: 0 8px;
   }
+
   .listCountryItem {
     max-width: 200px;
     max-height: 40px;
   }
-
 }
-
 </style>
